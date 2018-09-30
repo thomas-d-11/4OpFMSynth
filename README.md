@@ -9,5 +9,6 @@ Axoloti board.
 
 
 Current State (as of Sept. 30, 2018): Alpha. Code has been debugged within the Axoloti IDE, and core functionality
-within AxoFiles/patches/fm operator and ~/fm voice seem to be working properly. ~/fm synth is untested. The case 
-and controls hardware is currently being fabricated.
+within AxoFiles/patches/fm operator and ~/fm voice seem to be working properly. ~/fm synth is untested until hardware
+is fully fabricated. The case and controls hardware is being fabricated, using FreeCAD as a sketchbook. Current case 
+design is CADFiles/Sheet Metal Case 3 (Assembly).
