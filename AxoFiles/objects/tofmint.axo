@@ -1,0 +1,28 @@
+<objdefs appVersion="1.0.12">
+   <obj.normal id="tofmint" uuid="2b27d9a0-acf6-44d7-ab03-a1ba8045db70">
+      <sDescription>Converts continuous input (0 - 0x7FFFFFF) to discrete output (0 (0x0000000), 1 (0x200000), 2 (0x400000), 3 (0x600000)). For use setting int of fm ratio.</sDescription>
+      <author>Thomas Dabay</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32 name="input"/>
+      </inlets>
+      <outlets>
+         <frac32 name="int" description="integer component of fm op freq"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[int ints[4] = {0x0000000, 0x200000, 0x400000, 0x600000};
+int length = 4;
+int inc = 0x7FFFFFF / length;]]></code.declaration>
+      <code.krate><![CDATA[int32_t step = 0;
+outlet_int = ints[length-1];
+for (int i = 0; i < length-1; i++) {
+	step += inc;
+	if (inlet_input <= step) {
+		outlet_int = ints[i];
+		break;
+	}
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

@@ -1,0 +1,28 @@
+<objdefs appVersion="1.0.12">
+   <obj.normal id="tofmmode" uuid="d5b17926-4d57-450a-a40f-3f8b6faca7f9">
+      <sDescription>Converts continuous input (0 - 0x7FFFFFF) to discrete output (0, 1, 2, 3 ). For use setting int for fm operator mode.</sDescription>
+      <author>Thomas Dabay</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32 name="input"/>
+      </inlets>
+      <outlets>
+         <int32 name="int"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[int ints[4] = {0, 1, 2, 3};
+int length = 4;
+int inc = 0x7FFFFFF / length;]]></code.declaration>
+      <code.krate><![CDATA[int32_t step = 0;
+outlet_int = ints[length-1];
+for (int i = 0; i < length-1; i++) {
+	step += inc;
+	if (inlet_input <= step) {
+		outlet_int = ints[i];
+		break;
+	}
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

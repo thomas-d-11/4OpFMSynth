@@ -1,0 +1,205 @@
+<objdefs appVersion="1.0.12">
+   <obj.normal id="8x 4051 multiplex control" uuid="910715ad-eb43-47a6-be2d-15353cf7bc7a">
+      <sDescription>For use with 8x 4051 multiplexers. 64 outlets send k-rate data to fm synth. 3 digital gpio outs (PB7-9) switch between the 4051s&apos; selections and 8 analog gpio ins (PA0-7) provide data from each 4051&apos;s current selection. 
+
+Analog In voltage range 0 to 3.3V maps to 0..64, with 12-bit precision. Apply no more than 3.3V!</sDescription>
+      <author>Thomas Dabay</author>
+      <license>BSD</license>
+      <helpPatch>analog.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <frac32 name="Op1Mode"/>
+         <frac32 name="Op1AmpA"/>
+         <frac32 name="Op1AmpD"/>
+         <frac32 name="Op1AmpS"/>
+         <frac32 name="Op1AmpR"/>
+         <frac32 name="Op1AmpDepth"/>
+         <frac32 name="Op1AmpVel"/>
+         <frac32 name="Op1AmpAT"/>
+         <frac32 name="Op1Freq"/>
+         <frac32 name="Op1FreqA"/>
+         <frac32 name="Op1FreqD"/>
+         <frac32 name="Op1FreqS"/>
+         <frac32 name="Op1FreqR"/>
+         <frac32 name="Op1FreqDepth"/>
+         <frac32 name="Op1FreqVel"/>
+         <frac32 name="Op1FreqAT"/>
+         <frac32 name="Op2Mode"/>
+         <frac32 name="Op2AmpA"/>
+         <frac32 name="Op2AmpD"/>
+         <frac32 name="Op2AmpS"/>
+         <frac32 name="Op2AmpR"/>
+         <frac32 name="Op2AmpDepth"/>
+         <frac32 name="Op2AmpVel"/>
+         <frac32 name="Op2AmpAT"/>
+         <frac32 name="Op2Freq"/>
+         <frac32 name="Op2FreqA"/>
+         <frac32 name="Op2FreqD"/>
+         <frac32 name="Op2FreqS"/>
+         <frac32 name="Op2FreqR"/>
+         <frac32 name="Op2FreqDepth"/>
+         <frac32 name="Op2FreqVel"/>
+         <frac32 name="Op2FreqAT"/>
+         <frac32 name="Op3Mode"/>
+         <frac32 name="Op3AmpA"/>
+         <frac32 name="Op3AmpD"/>
+         <frac32 name="Op3AmpS"/>
+         <frac32 name="Op3AmpR"/>
+         <frac32 name="Op3AmpDepth"/>
+         <frac32 name="Op3AmpVel"/>
+         <frac32 name="Op3AmpAT"/>
+         <frac32 name="Op3Freq"/>
+         <frac32 name="Op3FreqA"/>
+         <frac32 name="Op3FreqD"/>
+         <frac32 name="Op3FreqS"/>
+         <frac32 name="Op3FreqR"/>
+         <frac32 name="Op3FreqDepth"/>
+         <frac32 name="Op3FreqVel"/>
+         <frac32 name="Op3FreqAT"/>
+         <frac32 name="Op4Mode"/>
+         <frac32 name="Op4AmpA"/>
+         <frac32 name="Op4AmpD"/>
+         <frac32 name="Op4AmpS"/>
+         <frac32 name="Op4AmpR"/>
+         <frac32 name="Op4AmpDepth"/>
+         <frac32 name="Op4AmpVel"/>
+         <frac32 name="Op4AmpAT"/>
+         <frac32 name="Op4Freq"/>
+         <frac32 name="Op4FreqA"/>
+         <frac32 name="Op4FreqD"/>
+         <frac32 name="Op4FreqS"/>
+         <frac32 name="Op4FreqR"/>
+         <frac32 name="Op4FreqDepth"/>
+         <frac32 name="Op4FreqVel"/>
+         <frac32 name="Op4FreqAT"/>
+         <frac32 name="Op1FreqInt"/>
+         <frac32 name="Op2FreqInt"/>
+         <frac32 name="Op3FreqInt"/>
+         <frac32 name="Op4FreqInt"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.init><![CDATA[//set mode for output pins
+palSetPadMode(GPIOB, 9, PAL_MODE_OUTPUT_PUSHPULL);	//double check that i want push-pull mode,
+palSetPadMode(GPIOB, 8, PAL_MODE_OUTPUT_PUSHPULL);	//not open drain mode...
+palSetPadMode(GPIOB, 7, PAL_MODE_OUTPUT_PUSHPULL);]]></code.init>
+      <code.krate><![CDATA[//send 000 to 4051 control, and read data
+palWritePad(GPIOB, 9, 0);		//i'm not sure if this is how it's supposed to work...
+palWritePad(GPIOB, 8, 0);		//if i have problems, ask about how palWritePad works...
+palWritePad(GPIOB, 7, 0);
+
+outlet_Op1Mode = adcvalues[0]<<15;
+outlet_Op1Freq = adcvalues[1]<<15;
+outlet_Op2Mode = adcvalues[2]<<15;
+outlet_Op2Freq = adcvalues[3]<<15;
+outlet_Op3Mode = adcvalues[4]<<15;
+outlet_Op3Freq = adcvalues[5]<<15;
+outlet_Op4Mode = adcvalues[6]<<15;
+outlet_Op4Freq = adcvalues[7]<<15;
+
+//send 001 to 4051 control, and read data
+palWritePad(GPIOB, 9, 0);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 0);
+palWritePad(GPIOB, 7, 1);
+
+outlet_Op1AmpA = adcvalues[0]<<15;
+outlet_Op1FreqA = adcvalues[1]<<15;
+outlet_Op2AmpA = adcvalues[2]<<15;
+outlet_Op2FreqA = adcvalues[3]<<15;
+outlet_Op3AmpA = adcvalues[4]<<15;
+outlet_Op3FreqA = adcvalues[5]<<15;
+outlet_Op4AmpA = adcvalues[6]<<15;
+outlet_Op4FreqA = adcvalues[7]<<15;
+
+//send 010 to 4051 control, and read data
+palWritePad(GPIOB, 9, 0);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 1);
+palWritePad(GPIOB, 7, 0);
+
+outlet_Op1AmpD = adcvalues[0]<<15;
+outlet_Op1FreqD = adcvalues[1]<<15;
+outlet_Op2AmpD = adcvalues[2]<<15;
+outlet_Op2FreqD = adcvalues[3]<<15;
+outlet_Op3AmpD = adcvalues[4]<<15;
+outlet_Op3FreqD = adcvalues[5]<<15;
+outlet_Op4AmpD = adcvalues[6]<<15;
+outlet_Op4FreqD = adcvalues[7]<<15;
+
+//send 011 to 4051 control, and read data
+palWritePad(GPIOB, 9, 0);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 1);
+palWritePad(GPIOB, 7, 1);
+
+outlet_Op1AmpS = adcvalues[0]<<15;
+outlet_Op1FreqS = adcvalues[1]<<15;
+outlet_Op2AmpS = adcvalues[2]<<15;
+outlet_Op2FreqS = adcvalues[3]<<15;
+outlet_Op3AmpS = adcvalues[4]<<15;
+outlet_Op3FreqS = adcvalues[5]<<15;
+outlet_Op4AmpS = adcvalues[6]<<15;
+outlet_Op4FreqS = adcvalues[7]<<15;
+
+//send 100 to 4051 control, and read data
+palWritePad(GPIOB, 9, 1);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 0);
+palWritePad(GPIOB, 7, 0);
+
+outlet_Op1AmpR = adcvalues[0]<<15;
+outlet_Op1FreqR = adcvalues[1]<<15;
+outlet_Op2AmpR = adcvalues[2]<<15;
+outlet_Op2FreqR = adcvalues[3]<<15;
+outlet_Op3AmpR = adcvalues[4]<<15;
+outlet_Op3FreqR = adcvalues[5]<<15;
+outlet_Op4AmpR = adcvalues[6]<<15;
+outlet_Op4FreqR = adcvalues[7]<<15;
+
+//send 101 to 4051 control, and read data
+palWritePad(GPIOB, 9, 1);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 0);
+palWritePad(GPIOB, 7, 1);
+
+outlet_Op1AmpDepth = adcvalues[0]<<15;
+outlet_Op1FreqDepth = adcvalues[1]<<15;
+outlet_Op2AmpDepth = adcvalues[2]<<15;
+outlet_Op2FreqDepth = adcvalues[3]<<15;
+outlet_Op3AmpDepth = adcvalues[4]<<15;
+outlet_Op3FreqDepth = adcvalues[5]<<15;
+outlet_Op4AmpDepth = adcvalues[6]<<15;
+outlet_Op4FreqDepth = adcvalues[7]<<15;
+
+//send 110 to 4051 control, and read data
+palWritePad(GPIOB, 9, 1);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 1);
+palWritePad(GPIOB, 7, 0);
+
+outlet_Op1AmpVel = adcvalues[0]<<15;
+outlet_Op1FreqVel = adcvalues[1]<<15;
+outlet_Op2AmpVel = adcvalues[2]<<15;
+outlet_Op2FreqVel = adcvalues[3]<<15;
+outlet_Op3AmpVel = adcvalues[4]<<15;
+outlet_Op3FreqVel = adcvalues[5]<<15;
+outlet_Op4AmpVel = adcvalues[6]<<15;
+outlet_Op4FreqVel = adcvalues[7]<<15;
+
+//send 111 to 4051 control, and read data
+palWritePad(GPIOB, 9, 1);		//again, not sure if this is right...
+palWritePad(GPIOB, 8, 1);
+palWritePad(GPIOB, 7, 1);
+
+outlet_Op1AmpAT = adcvalues[0]<<15;
+outlet_Op1FreqAT = adcvalues[1]<<15;
+outlet_Op2AmpAT = adcvalues[2]<<15;
+outlet_Op2FreqAT = adcvalues[3]<<15;
+outlet_Op3AmpAT = adcvalues[4]<<15;
+outlet_Op3FreqAT = adcvalues[5]<<15;
+outlet_Op4AmpAT = adcvalues[6]<<15;
+outlet_Op4FreqAT = adcvalues[7]<<15;
+
+//read data for Op1-4 FreqInt outlets
+outlet_Op1FreqInt = adcvalues[10]<<15;
+outlet_Op2FreqInt = adcvalues[11]<<15;
+outlet_Op3FreqInt = adcvalues[12]<<15;
+outlet_Op4FreqInt = adcvalues[13]<<15;]]></code.krate>
+   </obj.normal>
+</objdefs>

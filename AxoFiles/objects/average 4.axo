@@ -1,0 +1,33 @@
+<objdefs appVersion="1.0.12">
+   <obj.normal id="average 4" uuid="8edb70e3-7e10-4270-bfa5-a5989a9c8ffe">
+      <sDescription>outputs average of up to 4 input signals</sDescription>
+      <author>Thomas Dabay</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32buffer name="in1" description="in1"/>
+         <frac32buffer name="in2" description="in2"/>
+         <frac32buffer name="in3"/>
+         <frac32buffer name="in4"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="out" description="out"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[int32_t count, sum;]]></code.declaration>
+      <code.srate><![CDATA[count = 4;
+sum = inlet_in1 + inlet_in2 + inlet_in3 + inlet_in4;
+
+if (inlet_in1 == 0) count = count - 1;
+if (inlet_in2 == 0) count = count - 1;
+if (inlet_in3 == 0) count = count - 1;
+if (inlet_in4 == 0) count = count - 1;
+
+if (count == 4) outlet_out = sum>>2;
+else if (count == 3) outlet_out = sum / 3;
+else if (count == 2) outlet_out = sum>>1;
+else if (count == 1) outlet_out = sum;
+else outlet_out = 0;]]></code.srate>
+   </obj.normal>
+</objdefs>

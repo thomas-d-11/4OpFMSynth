@@ -1,0 +1,20 @@
+<objdefs appVersion="1.0.12">
+   <obj.normal id="+ 3nums" uuid="2ab07466-9b59-44eb-9e24-993bc5b748fa">
+      <sDescription>add 3 numbers (based on factory/math/+)</sDescription>
+      <author>Thomas Dabay</author>
+      <license>BSD</license>
+      <helpPatch>math.axh</helpPatch>
+      <inlets>
+         <frac32 name="in1" description="in1"/>
+         <frac32 name="in2" description="in2"/>
+         <frac32 name="in3" description="in3"/>
+      </inlets>
+      <outlets>
+         <frac32 name="out" description="out"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.krate><![CDATA[outlet_out= inlet_in1+inlet_in2+inlet_in3;]]></code.krate>
+   </obj.normal>
+</objdefs>
