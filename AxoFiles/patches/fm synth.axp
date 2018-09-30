@@ -1,0 +1,451 @@
+<patch-1.0 appVersion="1.0.12">
+   <obj type="8x 4051 multiplex control" uuid="910715ad-eb43-47a6-be2d-15353cf7bc7a" name="8x_1" x="14" y="56">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="./fm voice" uuid="15a70279-5f2a-4ad1-89ce-e958c81c837d" name="fm_1" x="462" y="56">
+      <params/>
+      <attribs>
+         <combo attributeName="poly" selection="4"/>
+      </attribs>
+   </obj>
+   <obj type="tofmmode" uuid="d5b17926-4d57-450a-a40f-3f8b6faca7f9" name="tofmmode_1" x="252" y="70">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmratio" uuid="7a9a9691-f48f-4c64-bfe4-6e19cd713358" name="tofmratio_1" x="224" y="168">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/+" uuid="44553fdc8628c67ab535845ed1be304ad6c9553b" name="+_1" x="294" y="182">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmint" uuid="2b27d9a0-acf6-44d7-ab03-a1ba8045db70" name="tofmint_1" x="238" y="210">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmmode" uuid="d5b17926-4d57-450a-a40f-3f8b6faca7f9" name="tofmmode_4" x="252" y="294">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmratio" uuid="7a9a9691-f48f-4c64-bfe4-6e19cd713358" name="tofmratio_2" x="224" y="392">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/+" uuid="44553fdc8628c67ab535845ed1be304ad6c9553b" name="+_2" x="294" y="406">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmint" uuid="2b27d9a0-acf6-44d7-ab03-a1ba8045db70" name="tofmint_2" x="238" y="434">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmmode" uuid="d5b17926-4d57-450a-a40f-3f8b6faca7f9" name="tofmmode_3" x="252" y="518">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmratio" uuid="7a9a9691-f48f-4c64-bfe4-6e19cd713358" name="tofmratio_3" x="238" y="616">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/+" uuid="44553fdc8628c67ab535845ed1be304ad6c9553b" name="+_3" x="308" y="630">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmint" uuid="2b27d9a0-acf6-44d7-ab03-a1ba8045db70" name="tofmint_3" x="252" y="658">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmmode" uuid="d5b17926-4d57-450a-a40f-3f8b6faca7f9" name="tofmmode_2" x="252" y="742">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmratio" uuid="7a9a9691-f48f-4c64-bfe4-6e19cd713358" name="tofmratio_4" x="238" y="840">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/+" uuid="44553fdc8628c67ab535845ed1be304ad6c9553b" name="+_4" x="308" y="854">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="tofmint" uuid="2b27d9a0-acf6-44d7-ab03-a1ba8045db70" name="tofmint_4" x="252" y="882">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="analog_1" x="602" y="1008">
+      <params/>
+      <attribs>
+         <combo attributeName="channel" selection="PC4 (ADC1_IN14)"/>
+      </attribs>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="798" y="1064">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="630" y="1106">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="fm_1" outlet="FM Voice Out"/>
+         <dest obj="vca_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="vca_1" outlet="o"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpA"/>
+         <dest obj="fm_1" inlet="Op1 AE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpD"/>
+         <dest obj="fm_1" inlet="Op1 AE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpS"/>
+         <dest obj="fm_1" inlet="Op1 AE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpAT"/>
+         <dest obj="fm_1" inlet="Op1 Amp AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqA"/>
+         <dest obj="fm_1" inlet="Op1 FE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpVel"/>
+         <dest obj="fm_1" inlet="Op1 Amp Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpDepth"/>
+         <dest obj="fm_1" inlet="Op1 AE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1AmpR"/>
+         <dest obj="fm_1" inlet="Op1 AE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqAT"/>
+         <dest obj="fm_1" inlet="Op1 Freq AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpA"/>
+         <dest obj="fm_1" inlet="Op2 AE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqVel"/>
+         <dest obj="fm_1" inlet="Op1 Freq Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqDepth"/>
+         <dest obj="fm_1" inlet="Op1 FE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqR"/>
+         <dest obj="fm_1" inlet="Op1 FE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqS"/>
+         <dest obj="fm_1" inlet="Op1 FE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqD"/>
+         <dest obj="fm_1" inlet="Op1 FE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpAT"/>
+         <dest obj="fm_1" inlet="Op2 Amp AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqA"/>
+         <dest obj="fm_1" inlet="Op2 FE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpD"/>
+         <dest obj="fm_1" inlet="Op2 AE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpS"/>
+         <dest obj="fm_1" inlet="Op2 AE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpR"/>
+         <dest obj="fm_1" inlet="Op2 AE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpDepth"/>
+         <dest obj="fm_1" inlet="Op2 AE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2AmpVel"/>
+         <dest obj="fm_1" inlet="Op2 Amp Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqD"/>
+         <dest obj="fm_1" inlet="Op2 FE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqS"/>
+         <dest obj="fm_1" inlet="Op2 FE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqR"/>
+         <dest obj="fm_1" inlet="Op2 FE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqDepth"/>
+         <dest obj="fm_1" inlet="Op2 FE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqVel"/>
+         <dest obj="fm_1" inlet="Op2 Freq Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqAT"/>
+         <dest obj="fm_1" inlet="Op2 Freq AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpA"/>
+         <dest obj="fm_1" inlet="Op3 AE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpAT"/>
+         <dest obj="fm_1" inlet="Op3 Amp AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpVel"/>
+         <dest obj="fm_1" inlet="Op3 Amp Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpDepth"/>
+         <dest obj="fm_1" inlet="Op3 AE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpR"/>
+         <dest obj="fm_1" inlet="Op3 AE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpS"/>
+         <dest obj="fm_1" inlet="Op3 AE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3AmpD"/>
+         <dest obj="fm_1" inlet="Op3 AE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqA"/>
+         <dest obj="fm_1" inlet="Op3 FE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqD"/>
+         <dest obj="fm_1" inlet="Op3 FE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqS"/>
+         <dest obj="fm_1" inlet="Op3 FE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqR"/>
+         <dest obj="fm_1" inlet="Op3 FE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqDepth"/>
+         <dest obj="fm_1" inlet="Op3 FE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqVel"/>
+         <dest obj="fm_1" inlet="Op3 Freq Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqAT"/>
+         <dest obj="fm_1" inlet="Op3 Freq AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpA"/>
+         <dest obj="fm_1" inlet="Op4 AE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpD"/>
+         <dest obj="fm_1" inlet="Op4 AE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpS"/>
+         <dest obj="fm_1" inlet="Op4 AE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpR"/>
+         <dest obj="fm_1" inlet="Op4 AE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpDepth"/>
+         <dest obj="fm_1" inlet="Op4 AE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpVel"/>
+         <dest obj="fm_1" inlet="Op4 Amp Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4AmpAT"/>
+         <dest obj="fm_1" inlet="Op4 Amp AT"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqA"/>
+         <dest obj="fm_1" inlet="Op4 FE A"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqD"/>
+         <dest obj="fm_1" inlet="Op4 FE D"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqS"/>
+         <dest obj="fm_1" inlet="Op4 FE S"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqR"/>
+         <dest obj="fm_1" inlet="Op4 FE R"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqDepth"/>
+         <dest obj="fm_1" inlet="Op4 FE Depth"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqVel"/>
+         <dest obj="fm_1" inlet="Op4 Freq Vel"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqAT"/>
+         <dest obj="fm_1" inlet="Op4 Freq AT"/>
+      </net>
+      <net>
+         <source obj="analog_1" outlet="out"/>
+         <dest obj="vca_1" inlet="v"/>
+      </net>
+      <net>
+         <source obj="tofmint_1" outlet="int"/>
+         <dest obj="+_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="tofmratio_1" outlet="ratio"/>
+         <dest obj="+_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1Freq"/>
+         <dest obj="tofmratio_1" inlet="input"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1FreqInt"/>
+         <dest obj="tofmint_1" inlet="input"/>
+      </net>
+      <net>
+         <source obj="+_1" outlet="out"/>
+         <dest obj="fm_1" inlet="Op1 Freq"/>
+      </net>
+      <net>
+         <source obj="tofmint_2" outlet="int"/>
+         <dest obj="+_2" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="tofmratio_2" outlet="ratio"/>
+         <dest obj="+_2" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2Freq"/>
+         <dest obj="tofmratio_2" inlet="input"/>
+      </net>
+      <net>
+         <source obj="+_2" outlet="out"/>
+         <dest obj="fm_1" inlet="Op2 Freq"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2FreqInt"/>
+         <dest obj="tofmint_2" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmint_3" outlet="int"/>
+         <dest obj="+_3" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="tofmratio_3" outlet="ratio"/>
+         <dest obj="+_3" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="+_3" outlet="out"/>
+         <dest obj="fm_1" inlet="Op3 Freq"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3Freq"/>
+         <dest obj="tofmratio_3" inlet="input"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3FreqInt"/>
+         <dest obj="tofmint_3" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmint_4" outlet="int"/>
+         <dest obj="+_4" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="tofmratio_4" outlet="ratio"/>
+         <dest obj="+_4" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="+_4" outlet="out"/>
+         <dest obj="fm_1" inlet="Op4 Freq"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4Freq"/>
+         <dest obj="tofmratio_4" inlet="input"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4FreqInt"/>
+         <dest obj="tofmint_4" inlet="input"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op1Mode"/>
+         <dest obj="tofmmode_1" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmmode_1" outlet="int"/>
+         <dest obj="fm_1" inlet="Op1 Mode In"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op2Mode"/>
+         <dest obj="tofmmode_4" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmmode_4" outlet="int"/>
+         <dest obj="fm_1" inlet="Op2 Mode In"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op3Mode"/>
+         <dest obj="tofmmode_3" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmmode_3" outlet="int"/>
+         <dest obj="fm_1" inlet="Op3 Mode In"/>
+      </net>
+      <net>
+         <source obj="8x_1" outlet="Op4Mode"/>
+         <dest obj="tofmmode_2" inlet="input"/>
+      </net>
+      <net>
+         <source obj="tofmmode_2" outlet="int"/>
+         <dest obj="fm_1" inlet="Op4 Mode In"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>1140</x>
+      <y>91</y>
+      <width>1065</width>
+      <height>1400</height>
+   </windowPos>
+</patch-1.0>
